@@ -1,0 +1,115 @@
+.header-content{
+    position: fixed;
+    top: 0;
+    right:0;
+    left:0;
+    z-index: 10;
+    width: 100%;
+    background: #550c3e;
+    text-align: center;
+    align-items: center;
+    box-shadow: 0 .5rem 1.5rem rgb(46, 46, 46);
+
+    &__heading{
+        background-color: black;
+        align-items: center;
+        text-align: center;
+        height: 25%;
+
+        &__logo{
+            text-align: left;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            img{
+                width:60px;
+                height:60px;
+                @media screen  and (max-width:900px){
+                    width:35px;
+                    height:35px;
+                }
+            }
+            a{
+                text-decoration: none;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                font-size: 20px;
+                color: white;
+                font-weight:bold;
+                // text-transform: uppercase;
+
+                &:hover{
+                    color: wheat;
+                }
+                @media screen  and (max-width:900px){
+                    font-size: 14px;
+                }
+            }
+            .icon{
+                margin-left:auto;
+                margin-right: 15px;
+                display: none;
+
+                @media screen  and (max-width:600px){
+                    display: block;
+                }
+            }
+        }
+    }
+
+    &__navbar{
+        display: flex;
+        flex-direction: row;
+    
+        li{
+            list-style: none;
+        }
+        .float-right{
+            margin-left:auto;
+            display: flex;
+            align-items:baseline;        
+        }
+        li:last-child{
+            text-align: right;
+        }
+        a{
+            color:wheat;
+            text-decoration: none;
+            padding: 0px 15px;
+            // font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-family: franklin-gothic-urw;
+            font-weight: bolder;
+            font-size: 17px;
+            // text-transform: uppercase;
+
+            @media screen  and (max-width:900px){
+                font-size: 10px;
+                padding: 0px 10px;
+                padding-top: 1px;
+            }
+
+            &:hover{
+                color:white;
+                cursor: pointer;
+                transform: scale(1.2);
+            }
+            &.active{
+                color:white;
+            }
+        }
+    }
+}
+
+@media screen and (max-width:600px) {
+     .header-content__navbar{
+        li{
+            display: none;
+        }
+     } 
+     
+     .header-content__navbar.responsive{
+        li{
+            float: left;
+            display: block;
+        }
+     }
+}

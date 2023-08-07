@@ -1,0 +1,48 @@
+.pp{
+    margin-top: 0;
+    margin: 3px 32px 32px 32px;
+    padding:90px 30px 30px 30px;
+    background-color: white;
+    box-shadow:2px 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1);   
+    
+    em {
+        font-style: italic;
+        font-family: Arial, sans-serif;
+    }
+
+    strong{
+        font-size: 14px;
+        font-family: Georgia, Times New Roman;    
+
+        @media screen and (max-width:900px) {
+            font-size: 10px;
+        }
+    }
+
+    p{
+        font-size: 17px;
+        margin-bottom: 16px;
+        font-family: Times New Roman, Times, serif;
+
+        @media screen and (max-width:900px) {
+            font-size: 13px;
+        }
+    }
+    
+    h2{
+        text-align: center;
+        font-family: Georgia, Times New Roman;
+        font-size: 25px;
+        margin-bottom: 8px;
+    }
+
+    .float-end{
+        text-align: end;
+    }
+
+    @media screen and (max-width:900px) {
+        margin:0 30px 30px 30px;
+        padding:60px 30px 30px 30px;
+    }
+    
+}

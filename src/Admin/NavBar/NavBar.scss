@@ -1,0 +1,36 @@
+  .nav-list {
+    list-style-type: none;
+    background-color: #333;
+    width:max-content;
+    height: 100%;
+    display: flex;
+    padding-left: 0px;
+    flex-direction: column;
+    align-items: left;
+    font-size: 12px;
+    font-weight: bolder;
+
+    li {
+      padding: 10px 20px 10px 20px;
+      border-bottom: 1px solid rgb(133, 132, 132);
+      transition: background-color 0.3s ease-in-out;
+      a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out;
+        &:active {
+          color: #ff8255;
+        }
+      }
+      &:hover {
+        background-color:rgb(27, 117, 212);
+      }
+    }
+  }
+  @media screen and (max-width:900px) {
+    .nav-list{
+      font-size: 9px;
+      padding: 0px;
+    }
+  }
+

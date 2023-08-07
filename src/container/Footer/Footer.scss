@@ -1,0 +1,82 @@
+footer{
+    background-color: #340926;
+    padding-top: 20px;
+    color:white;
+
+    .app_footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: baseline;
+        padding-bottom: 30px;
+        padding-top: 30px;
+
+        .app_footer-heading{
+            color: #F033B4;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        li{
+            list-style: none;
+            margin:4px;
+        }
+        a{
+            color: wheat;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 12px;
+            text-decoration: none;
+            &:hover{
+                color: white;
+            }
+        }   
+
+        .app__footer-social-media-icons{
+            display: flex;
+            flex-direction: row;
+            .fab{
+                font-size: 17px;
+            }
+            i:hover{
+                color:white;
+                transform: scale(1.2);
+            }
+        } 
+
+        @media screen  and (max-width:900px) {
+            display: flex;
+            flex-wrap: wrap;
+            text-align: left;
+            gap: 20px;
+
+        }
+    }
+
+    hr:not([size]) {
+        height: 1px;
+        color: white;
+    }
+
+    hr{
+        margin: 0;
+    }
+
+    .app_footer-hr{
+        display:block;
+        padding: 10px;
+        text-align: center;
+        align-items: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        p{
+            margin: 0;
+        }
+
+        @media screen  and (max-width:900px){
+            font-size: 12px;
+        }
+    }
+    @media screen  and (max-width:900px){
+        padding-top: 25px;
+    }
+}

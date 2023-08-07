@@ -1,0 +1,54 @@
+.videomain{
+    background: black;
+    display: flex;
+    width: 100%;
+
+    @media screen and (max-width:750px) {
+        flex-direction: column;
+    }
+}
+.videodis{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+
+    margin-right: 23px;
+    padding-bottom: 93px;
+    
+
+    .dis{
+        display: flex;
+        flex-direction: column;
+        background-color: black;
+        border: 1px solid white;
+        padding-bottom: 23px;
+
+        p{
+            color: white;
+            padding: 13px 6px 6px 16px;
+        
+
+        }
+
+        .dis0{
+            padding: 0 10px 10px ;
+            background-color: gray;
+
+            p{
+                color: white;
+                
+            }
+            
+        }
+       
+    }
+
+    .dis1{
+        background-color: black;
+        p{
+            background-color: black;
+        }
+    }
+}

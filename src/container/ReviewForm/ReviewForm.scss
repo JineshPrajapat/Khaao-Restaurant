@@ -1,0 +1,48 @@
+.review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .rating {
+        font-size: 24px;
+        margin-bottom: 10px;
+    
+        .star {
+          color: #ddd;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+    
+        .filled {
+          color: #ff9900;
+        }
+      }
+    
+  
+    button {
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    .submit:hover{
+        background-color: #ff6800;
+      }
+  
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      resize: vertical;
+      margin-bottom: 10px;
+      height:134px;
+      font-size: 0.9rem;
+    }
+  }
+  

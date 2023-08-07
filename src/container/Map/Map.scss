@@ -1,0 +1,10 @@
+.agileits-w3layouts-map iframe{
+    width: 100%;
+    min-height: 350px;
+    border: none;
+
+    @media (max-width: 768px){
+        width: 100%;
+        min-height:250px;
+    }
+}

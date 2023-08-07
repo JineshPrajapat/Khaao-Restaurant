@@ -1,0 +1,100 @@
+.admin{
+    margin-top: 85px;
+
+    .admin_header{
+        background-color: #333;
+        border-bottom: 2px solid white;
+        display: flex;
+        padding: 10px;
+        .admin-heading {
+            font-size: 20px;
+            font-weight: bolder;
+            color: #ffdd55;
+            margin-left: 5px;
+        }
+
+        .admin_dropdown_end{
+            margin-left: auto;
+            margin-right: 5px;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 0px;
+            position: relative;
+            
+            
+            .dropdown_title{
+                color: wheat;
+                text-decoration: none;
+            }
+
+            .dropdown-profile{
+                padding: 20px;
+                position: absolute;
+                top: 200%;
+                right: 0%;
+                z-index: 1;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                background-color: wheat;
+                color: #620e47;
+                border-radius: 0.3rem;
+                transition: display 0.3s ease-in-out;
+                display: none;
+
+                a:hover{
+                    color: #3f072d;
+                }
+            }
+
+            .dropdown-profile.drop{
+                display: block;
+            }
+
+            .dropdown-active {
+                display: block;
+              }
+        }
+
+        .icon{
+            color:white;
+            @media screen and (min-width:700px) {
+                display: none;    
+            }
+        }
+    }
+
+    .admin_navbar_main{
+        display: flex;
+        flex-direction: row;
+        .admin_main_content{
+            margin: 0 auto;
+
+            @media screen and (max-width:1000px)
+            {
+                overflow-y: auto;
+            }
+        }
+    }
+
+    @media screen and (max-width:900px) {
+        margin-top: 58px;
+    }
+    @media screen and (max-width:600px) {
+        margin-top: 35px;
+    }
+}
+
+
+@media screen and (max-width:700px) {
+    .admin_navbar_main{
+       li{
+           display: none;
+       }
+    } 
+    
+    .admin_navbar_main.responsive{
+       li{
+           float: left;
+           display: block;
+       }
+    }
+}
