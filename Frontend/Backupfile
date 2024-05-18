@@ -1,0 +1,2 @@
+Below command is to restore postgresSQl backup file from command prompt of location D:\Applications\Program Files\PostgreSQL\16\bin> , from this location run below command to restore
+.\pg_restore --host=localhost --port=5413 --username=postgres --dbname=Restaurant --verbose "D:\Documents\DB\RestaurantDB-Backup"
