@@ -25,8 +25,8 @@ function App() {
   const { isAdminSignedUp } = useAdminAuth();
 
   const fullUrl = window.location.href;
-  const isAdminSignUpUrl = fullUrl === 'http://admin.localhost:3000/';
-  const isBaseUrl = fullUrl === 'http://localhost:3000/';
+  const isAdminSignUpUrl = fullUrl === 'https://admin.khaao-restaurant.vercel.app/';
+  const isBaseUrl = fullUrl === 'https://khaao-restaurant.vercel.app/';
 
   if (isAdminSignUpUrl) {
     return (
