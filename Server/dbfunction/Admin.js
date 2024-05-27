@@ -4,8 +4,8 @@ const checkAdminExist = async (email) => {
     const queryText = 'SELECT * FROM rest.admin WHERE email = $1';
     const values = [email];
 
-    const { rowCount } = await query(queryText, values);
-    return rowCount > 0;
+    const { rows } = await query(queryText, values);
+    return rows.length > 0 ? rows[0] : null;
 };
 
 const createAdmin = async (name, phone_number, email, address, image, hashedPassword) => {
@@ -13,6 +13,7 @@ const createAdmin = async (name, phone_number, email, address, image, hashedPass
     const values = [name, phone_number, email, address, image, hashedPassword];
     await query(queryText, values);
 };
+
 
 module.exports = {
     checkAdminExist,

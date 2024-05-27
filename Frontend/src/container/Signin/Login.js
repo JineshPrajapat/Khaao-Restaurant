@@ -6,12 +6,14 @@ import '../Register/Register.scss';
 import FlashMessage from "../FlashMessage/FlashMessage";
 import { images } from '../../constants';
 import { baseURL, appURL } from "../../config/api";
+import PreLoader from "../PreLoader/PreLoader";
 
 function Login() {
 
     const {setIsLoggedIn} = useAuth();
     const navigate = useNavigate();                                //initialize useNavigate
     const [flashMessage, setFlashMessage] = useState(null);
+    const [processing, setProcessing] = useState(false);
 
     const [formValue, setformValue] = React.useState({
         email: '',
@@ -29,6 +31,7 @@ function Login() {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
+        setProcessing(true);
 
         axios.post(`${baseURL}/user/login`, {
             email: formValue.email,
@@ -38,7 +41,14 @@ function Login() {
                 console.log("Response:", response);
 
                 if (response.status === 200) {
-                    
+                    const token = response.data.token;
+                    const userName = response.data.user.name;
+                    const email = response.data.user.email;
+
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('email', email);
+                
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
                     // window.location.href = `${appURL}`;
                     // login authenticated to protected area
@@ -69,7 +79,10 @@ function Login() {
                     // Handle network or request errors
                     console.error('Network or request error:', error);
                 }
-            });
+            })
+            .finally(()=>{
+                setProcessing(false);
+            })
     }
 
     return (
@@ -116,7 +129,7 @@ function Login() {
                     />
                 </div>
                 <a className="forget_password" href="#">Forgot password?</a>
-                <button title='Sign In' type='submit' className='sign-in_btn'><span>Log In</span></button>
+                <button title='Sign In' type='submit' disabled={processing} className={`sign-in_btn ${processing ? "processing" : ""}`}><span>{processing ? <PreLoader/> : "Log In"}</span></button>
                 <div className="new_to_account">
                     <h4 >New to Khaao?<Link to="/register">Create Account</Link></h4>
                 </div>

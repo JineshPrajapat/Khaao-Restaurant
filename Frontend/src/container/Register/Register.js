@@ -5,10 +5,13 @@ import FlashMessage from "../FlashMessage/FlashMessage";
 import './Register.scss'
 import { images } from '../../constants'
 import { baseURL, appURL } from '../../config/api';
+import { useAuth } from '../../AuthProvider/AuthProvider';
+import PreLoader from '../PreLoader/PreLoader';
 
 function Register() {
 
     const [flashMessage, setFlashMessage] = useState(null);
+    const [processing, setProcessing] = useState(false);
 
     const [formValue, setformValue] = useState({
         name: '',
@@ -16,6 +19,8 @@ function Register() {
         email:'',
         password:''
     });
+
+    const {setIsLoggedIn} = useAuth();
 
     const handleChange = (event) =>{
         setformValue({
@@ -26,7 +31,7 @@ function Register() {
 
     const handleFormSubmit = async (event) =>{
         event.preventDefault();
-
+        setProcessing(true);
         axios.post(`${baseURL}/user/register`,{
             name: formValue.name,
             phone_number: formValue.phone_number,
@@ -37,8 +42,16 @@ function Register() {
                 console.log("Response: ", response);
 
                 if(response.status === 200){
-                    //  successful registration flash message
+                    const token = response.data.token;
+                    const userName = response.data.user.name;
+                    const email = response.data.user.email;
+
+                    localStorage.setItem('token', token);
+                    localStorage.setItem('userName', userName);
+                    localStorage.setItem('email', email);
+
                     setFlashMessage({type: 'success', message:'Registration Successfull'});
+                    setIsLoggedIn(true);
                 }
             })
             .catch(error =>{
@@ -58,6 +71,9 @@ function Register() {
                     // handle network or request error
                     console.error('Network or request error:', error);
                 }
+            })
+            .finally(()=>{
+                setProcessing(false);
             })
     }
 
@@ -136,7 +152,7 @@ function Register() {
                         required 
                     />
                 </div>
-                <button title='Sign In' type='submit' className='sign-in_btn'><span>Sign In</span></button>
+                <button title='Sign In' type='submit' disabled={processing} className={`sign-in_btn ${processing ? "processing" : ""}`}><span>{processing ? <PreLoader/> : "Sign In"}</span></button>
                 <div className='separartor'>
                     {/* <hr className='line'/> */}
                     <span>Or</span>

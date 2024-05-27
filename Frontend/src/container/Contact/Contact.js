@@ -55,7 +55,7 @@ function Contact() {
                         setFlashMessage({ type: 'error', message: 'Message failed, try again!' });
                     }
                 })
-                .then(() => {
+                .finally(() => {
                     setformValue({
                         name: '',
                         email: '',
@@ -69,7 +69,7 @@ function Contact() {
     }
 
     return (
-        <div className={`${showConfirmation ? 'show-confirmation' : ''}`}>
+        <div className={` ${showConfirmation ? 'show-confirmation' : ''}`}>
             <div className="contact-heading">
                 <h2>Contact Us</h2>
                 <p>We would love to hear from you! Call, email or fax us or get directions to our restaurant all here in one place.</p>

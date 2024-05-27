@@ -7,11 +7,11 @@ import MotionWrap from '../../wrapper/MotionWrap';
 import { motion } from 'framer-motion';
 import { images } from '../../constants';
 import './Header.scss';
+import LogOutButton from '../LogOutButton/LogOutButton';
 
 function Header() {
 
       const { isLoggedIn } = useAuth();
-      // console.log('loggedIn:',isLoggedIn);
 
       function navbarToggle() {
             var x = document.getElementById("navbar");
@@ -30,7 +30,7 @@ function Header() {
                               {/* <div className="col-lg-8"> */}
                               <div className="header-content__heading__logo">
                                     <img src={images.logo} alt="logo" id="logoimg" />
-                                    <a href="./index.html">Khaao - Delicious Food Restaurant</a>
+                                    <a href="/">Khaao - Delicious Food Restaurant</a>
                                     <a href="javascript:void(0);" className='icon' onClick={navbarToggle} ><i className='fa fa-bars' /></a>
                               </div>
                               {/* </div> */}
@@ -39,14 +39,15 @@ function Header() {
                               <li><Link to="/">Home</Link></li>
                               <li><Link to="/Menu">Menu</Link></li>
                               <li><Link to="/Contact">Contact</Link></li>
-                              <li><Link to="/Reservation">Reservation</Link></li>
-                              {/* <li><Link to="/Admin">Admin</Link></li> */}
+
+                              <li><Link to="/reservations">Reservation</Link></li>
 
 
                               {isLoggedIn ? (
                                     /* Render links for logged-in users here */
                                     <li className='float-right'>
                                           <li><Link to="/Cart"><i className="fa-solid fa-cart-plus" title='Cart'></i><span className="cart-title"> Cart</span></Link></li>
+                                          <li><LogOutButton/></li>
                                           {/* Other links specific to logged-in users */}
                                     </li>
                               ) : (

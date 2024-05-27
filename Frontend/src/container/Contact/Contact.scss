@@ -36,13 +36,10 @@ $link-hover-color:#550c3e;
 }
 
 .contact-container {
-  // background-image: url('../../assets/food/contactimg.jpg');
-  // background-size: cover;
-  // background-attachment: fixed;
   display: flex;
-  margin: -40px 80px auto;
-  gap: 40px;
+  margin-top: -40px;
   margin-bottom: 70px;
+  justify-content:space-evenly;
 
 
   .form {
@@ -59,16 +56,20 @@ $link-hover-color:#550c3e;
     background-image: url('../../assets/food/contactimg.jpg');
     background-size: cover;
     background-attachment: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
     // background: rgba(0,0,0,0.6);
     // background-color: $secondary-color;
     border: 2px solid #340926;
     box-shadow: 0 0 2px 2px white;
+    min-width: 40vw;
 
     label {
       display: flex;
       flex-direction: column;
       gap: 8px;
       font-weight: bolder;
+      color: white;
 
       @media screen  and (max-width:900px){
         font-family:'Times New Roman', Times, serif;
@@ -128,16 +129,18 @@ $link-hover-color:#550c3e;
     background-image: url('../../assets/food/contactimg.jpg');
     background-size: cover;
     background-attachment: fixed;
-    // background: rgba(0,0,0,0.6);
-    // background-color: $secondary-color;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
     border: 2px solid #340926;
     box-shadow: 0 0 2px 2px white;
     text-align: center;
+    align-items: center;
+    color: white;
+    min-width: 40vw;
 
     li {
       text-decoration: none;
       display: flex;
-      // width: 230px;
       flex-direction: column;
 
       h3 {
@@ -153,7 +156,7 @@ $link-hover-color:#550c3e;
 
       a {
         text-decoration: none;
-        color: black;
+        color: white;
         font-weight: bold;
         font-size: 17px;
         cursor: pointer;

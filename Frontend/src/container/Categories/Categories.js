@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { images } from '../../constants';
+import { Link } from 'react-router-dom';
 import './Categories.scss';
 import { baseURL } from '../../config/api';
+import { fetchData } from "../../FetchData/fetchData";
 // const categoryImages = [
 //     {
 //         imgUrl: images.idli,
@@ -48,7 +50,7 @@ function Categories() {
     //fetching data from server
     const getCategory = async () => {
       try{
-        const  response = await fetch(`${baseURL}/category`)
+        const response = await fetch(`${baseURL}/category`)
         const jsonData = await response.json();
         setcategoryList(jsonData);
       } catch (err){
@@ -59,6 +61,7 @@ function Categories() {
     useEffect(()=>{
       getCategory();
     },[]);
+
 
     useEffect(() => {
         const itemWidth = 510; // Adjust the item width to match the scroll distance
@@ -98,7 +101,7 @@ function Categories() {
                 {categoryList?.map((item, index) => (
                     <div className="item rounded-0 border-0 text-center" key={item.category_id + index} >
                         <img src={item.imageurl} alt={item.title} />
-                        <a href="#" className="btn btn-primary btn-lg">{item.variety}</a>
+                        <Link to="/Menu" className="btn btn-primary btn-lg">{item.variety}</Link>
                     </div>
                 ))}
             </div>

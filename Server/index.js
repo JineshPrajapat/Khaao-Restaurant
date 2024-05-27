@@ -13,6 +13,7 @@ const reservationRoutes = require("./routes/Reservation");
 const categoryRoutes = require("./routes/Category");
 const menuRoutes = require("./routes/Menu");
 const reviewRoutes = require("./routes/Review");
+const paymentRoutes = require("./routes/Payement");
 
 const adminRoutes = require("./routes/Admin/Admin");
 
@@ -28,16 +29,18 @@ const PORT = process.env.PORT
 app.use(express.json());
 app.use(fileUpload({ useTempFiles: true, tempFileDir: "/tmp", }));
 
-// const allowedOrigins = [
-//     'http://localhost:3001',
-//     '*'
-// ];
+const allowedOrigins = [
+    'http://localhost:3000',
+    'http://admin.localhost:3000',
+    '*'
+];
 
-// app.use(cors({
-//     origin: allowedOrigins
-// }));
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
 
-app.use(cors());
+// app.use(cors());
 
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/contact", contactRoutes);
@@ -45,6 +48,7 @@ app.use("/api/v1/reservation", reservationRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/menu", menuRoutes);
 app.use("/api/v1/review", reviewRoutes);
+app.use("/api/v1/payment", paymentRoutes)
 app.use("/api/v1/admin", adminRoutes );
 
 

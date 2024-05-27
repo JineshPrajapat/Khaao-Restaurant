@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from "react";
 import './Users.scss';
 import { baseURL } from "../../config/api";
+import { fetchData } from "../../FetchData/fetchData";
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Users = () => {
 
     const [userData, setUserData] = useState([]);
 
-    const getUsers = async () => {
-        try {
-            const response = await fetch(`${baseURL}/admin/getusers`);
-            const jsonData = await response.json();
-            setUserData(jsonData);
-        } catch (err) {
-            console.error(err.message);
-        }
-    }
-
     useEffect(() => {
-        getUsers();
-    }, [])
+        fetchData(`${baseURL}/admin/getusers`, setUserData)
+    })
+
+    const formatDate = (dateString) => {
+        const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Intl.DateTimeFormat('en-GB', options).format(new Date(dateString));
+    };
+
+    const formatTime = (dateString) => {
+        const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+        return new Intl.DateTimeFormat('en-US', options).format(new Date(dateString));
+    };
 
     return (
         <div className="users">
@@ -27,21 +29,33 @@ const Users = () => {
                 <table>
                     <thead>
                         <tr>
-                            <th>User ID</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Contact No.</th>
-                            <th>Created Date</th>
+                            <th>Profile</th>
+                            <th>Contact</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {userData.map((users, index) => (
-                            <tr key={users.userid}>
-                                <td>{users.userid}</td>
-                                <td>{users.username}</td>
-                                <td>{users.email}</td>
-                                <td>{users.contact_number}</td>
-                                <td>{users.date}</td>
+                        {userData.map((user) => (
+                            <tr key={user.userid}>
+                                <td>
+                                    <div className="flex items-center gap-2">
+                                        <i class="fa-solid fa-user text-xl rounded-full p-2 text-white bg-black"></i>
+                                        <div>{user.username}
+                                            <br />
+                                            <small className="text-gray-500">kh-{user.userid}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <i className="fas fa-envelope pr-2 "></i> {user.email}
+                                    <br />
+                                    <i className="fas fa-phone pr-2"></i> <small className="text-gray-500">{user.contact_number}</small>
+                                </td>
+                                <td>
+                                    {formatDate(user.date)}
+                                    <br />
+                                    <small className="text-gray-500">{formatTime(user.date)}</small>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

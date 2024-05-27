@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Admin.scss';
 import images from '../constants/images';
 import { Route, Routes } from 'react-router-dom';
@@ -13,15 +13,20 @@ import AddCategory from './AddCategory/AddCategory';
 import Users from './Users/Users';
 
 const Admin = () => {
-  function navbarToggle() {
-    var x = document.getElementById("admin-navbar");
-    if (x.className === "admin_navbar_main") {
-      x.className += " responsive";
-    } else {
-      x.className = "admin_navbar_main";
-    }
-  }
+  // function navbarToggle() {
+  //   var x = document.getElementById("admin-navbar");
+  //   if (x.className === "admin_navbar_main") {
+  //     x.className += " responsive";
+  //   } else {
+  //     x.className = "admin_navbar_main";
+  //   }
+  // }
 
+  const [navbarToggle, setNavbarToggle] = useState(false);
+
+  const handleNavbarToggle = () => {
+    setNavbarToggle(!navbarToggle);
+  }
   function profileDropdown() {
     var x = document.getElementById("navbarDropdown");
     if (x.className === "dropdown-profile") {
@@ -31,10 +36,21 @@ const Admin = () => {
     }
   }
 
+  const handleLogout = () => {
+    localStorage.clear();
+
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    window.location.href = "/";
+  };
+
   return (
     <div className='admin'>
       <div className='admin_header'>
-      <a href="javascript:void(0);" className='icon' onClick={navbarToggle} ><i className='fa fa-bars' /></a>
+        <div className='icon' onClick={handleNavbarToggle} ><i className='fa fa-bars' /></div>
         <h1 className='admin-heading'>Restaurant Administration</h1>
         <div className='admin_dropdown_end'>
           <a className="dropdown_title" href="javascript:void(0)" onClick={profileDropdown}>
@@ -43,23 +59,25 @@ const Admin = () => {
           <div className="dropdown-profile" id="navbarDropdown" >
             <a className="dropdown-item" href="#transaction">Transactions History</a>
             <a className="dropdown-item" href="#setting">Settings</a>
-            <a className="dropdown-item" href="#logout">Logout</a>
+            <a className="dropdown-item" href="#logout" onClick={handleLogout}>Logout</a>
           </div>
         </div>
       </div>
       <div className='admin_navbar_main' id='admin-navbar'>
-        <NavBar />
+        <div className={` ${navbarToggle ? "block" : "hidden md:block"}`}>
+          <NavBar />
+        </div>
         <div className="admin_main_content">
           <Routes >
             <Route path="/" element={<Dashboard />} />
-            <Route path="admin-Dashboard" element={<Dashboard />} />
-            <Route path="Users" element={<Users />} />
-            <Route path="view-menus" element={<ViewMenus />} />
-            <Route path="add-menu-item" element={<AddMenuItem />} />
-            <Route path="view-orders" element={<ViewOrders />} />
-            <Route path="view-reservations" element={<ViewReservation />} />
-            <Route path="register-admin" element={<RegisterAdmin />} />
-            <Route path="add-category" element={<AddCategory />} />
+            <Route path="/admin-Dashboard" element={<Dashboard />} />
+            <Route path="/Users" element={<Users />} />
+            <Route path="/view-menus" element={<ViewMenus />} />
+            <Route path="/add-menu-item" element={<AddMenuItem />} />
+            <Route path="/view-orders" element={<ViewOrders />} />
+            <Route path="/view-reservations" element={<ViewReservation />} />
+            <Route path="/register-admin" element={<RegisterAdmin />} />
+            <Route path="/add-category" element={<AddCategory />} />
           </Routes>
         </div>
       </div>

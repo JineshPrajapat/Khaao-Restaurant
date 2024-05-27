@@ -1,0 +1,274 @@
+// $title-color: #080808;
+// $reserve-bg-color: black;
+// $reserve-hover-bg-color: #550c3e;
+// $reserve-hover-text-color: white;
+// $button-bg-color: black;
+// $button-hover-bg-color: wheat;
+// $button-hover-text-color: black;
+
+// .reserve {
+//   margin-top: 90px;
+//   margin-bottom:50px;
+//   box-shadow: 0px 0px 3px 3px rgb(98, 98, 98);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   border: 1px solid #ccc;
+//   padding: 30px;
+  
+//   &:hover {
+//     box-shadow: 0px 0px 4px 4px #{$reserve-hover-bg-color};
+//     background-color: #{$reserve-bg-color};
+//     color: #{$reserve-hover-text-color};
+//     font-style: oblique;
+//   }
+  
+//   form {
+//     margin-top: 40px;
+//     margin-left: 50px;
+//     margin-right: 50px;
+//     margin-bottom: 70px;
+//     display: flex;
+//     flex-direction: column;
+    
+//     label {
+//       margin-bottom: 20px;
+//       text-align: left;
+//       display: flex;
+//       flex-direction: column;
+//       gap: 10px;
+//       font-style: normal;
+      
+//       #name, #date, #time, #seats,#phone_number,#tableNumber {
+//         border: 2px solid #080808;
+//         border-radius: 2px;
+//         padding-left: 5px;
+//         height: 44px;
+//         width: 280px;
+//       }
+//     }
+//   }
+  
+//   img {
+//     width: 400px;
+//     height: auto;
+//     margin-right: 20px;
+//     box-shadow: 0px 0px 5px 5px white;
+    
+//     &:hover {
+//       transform: scale(1.1);
+//     }
+
+//     @media (max-width: 768px){
+//       width: 100%;
+//       align-items: center;
+//       margin: 0 auto;
+//     }
+//   }
+
+//   @media (max-width: 768px){
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+
+// .reservation-btn {
+//   background-color: #{$button-bg-color};
+//   color: white;
+//   font-size: 20px;
+//   text-transform: uppercase;
+//   outline: auto 2px;
+//   height: 48px;
+//   margin-top: 50px;
+//   margin-bottom: 30px;
+//   font-weight: bolder;
+  
+//   &:hover {
+//     background-color: #{$button-hover-bg-color};
+//     color: #{$reserve-hover-bg-color};
+//     // box-shadow: 0px 3px 6px rgb(183, 100, 100);
+//   }
+// }
+
+// .processing{
+//   background-color: rgb(154, 150, 150);
+// }
+
+// .reserve-title {
+//   text-align: center;
+//   margin-top: 85px;
+//   color: $title-color;
+//   font-style: oblique;
+//   outline: 2px solid black;
+//   margin-left: 20px;
+//   margin-right: 20px;
+// }
+
+// @media (max-width: 768px) {
+//   img {
+//     width: 100%;
+//     align-items: center;
+    
+//     &:hover {
+//       width: 325px;
+//     }
+//   }
+// }
+
+
+// .reserve-body{
+//   &.show-confirmation {
+//     .confirmation-popup {
+//       opacity: 1;
+//     }
+//   }
+// }
+
+// Define color variables
+$title-color: #2c3e50;
+$reserve-bg-color: #1a1a1a;
+$reserve-hover-bg-color: #e74c3c;
+$reserve-hover-text-color: #ecf0f1;
+$button-bg-color: #34495e;
+$button-hover-bg-color: #e67e22;
+$button-hover-text-color: #ecf0f1;
+$form-input-border-color: #95a5a6;
+$form-input-focus-border-color: #e74c3c;
+
+// Style for the reserve component
+.reserve {
+  margin-top: 90px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 3px 3px rgba(98, 98, 98, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 30px;
+  background-color: #{$reserve-bg-color};
+  border-radius: 10px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 0 10px 4px #{$reserve-hover-bg-color};
+    // background-color: darken(#{$reserve-bg-color}, 10%);
+    color: #{$reserve-hover-text-color};
+    transform: scale(1.02);
+  }
+
+  // Style for the form inside the reserve component
+  form {
+    margin: 0 50px;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-style: normal;
+      color: #ecf0f1;
+
+      input {
+        border: 2px solid #{$form-input-border-color};
+        border-radius: 5px;
+        padding-left: 10px;
+        height: 44px;
+        width: 280px;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        transition: border-color 0.3s ease;
+
+        &:focus {
+          border-color: #{$form-input-focus-border-color};
+        }
+      }
+    }
+  }
+
+  // Style for the image inside the reserve component
+  img {
+    width: 400px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      margin: 0 auto 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+// Style for the reservation button
+.reservation-btn {
+  background-color: #{$button-bg-color};
+  color: #ecf0f1;
+  font-size: 20px;
+  text-transform: uppercase;
+  height: 48px;
+  margin: 50px 0 30px;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #{$button-hover-bg-color};
+    color: #{$button-hover-text-color};
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Style for the processing state of the reservation button
+.processing {
+  background-color: rgba(154, 150, 150, 0.8);
+  cursor: not-allowed;
+}
+
+// Style for the reservation title
+.reserve-title {
+  text-align: center;
+  margin: 85px 20px 20px;
+  color: #{$title-color};
+  font-style: oblique;
+  outline: 2px solid #{$title-color};
+  padding: 10px;
+  border-radius: 5px;
+}
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+  .reserve-title {
+    font-size: 1.5em;
+  }
+
+  img {
+    width: 100%;
+    margin-bottom: 20px;
+
+    &:hover {
+      width: 100%;
+    }
+  }
+}
+
+// Style for the reserve body when showing the confirmation
+.reserve-body {
+  &.show-confirmation {
+    .confirmation-popup {
+      opacity: 1;
+    }
+  }
+}

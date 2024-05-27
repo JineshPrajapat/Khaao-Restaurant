@@ -1,6 +1,8 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 const { createUser, checkUserExist, getUserByEmail } = require("../dbfunction/User");
+const { storeToken } = require("../dbfunction/Token");
 const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {
@@ -22,52 +24,105 @@ exports.register = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
     // Create new user account
-    await createUser(name, phone_number, email, hashedPassword);
-    res.status(200).send('User registered successfully');
+    const user = await createUser(name, phone_number, email, hashedPassword);
+
+    if (user) {
+      const payload = {
+        email: user.email,
+        id: user.userid,
+        name: user.username
+      };
+
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "2h"
+      });
+      const expiresAt = new Date(Date.now() + 2 * 60 * 60 * 1000);
+      await storeToken(user.userid, token, expiresAt);
+
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true
+      };
+
+      return res.cookie("token", token, options).status(200).json({
+        success: true,
+        token,
+        user: {
+          id: user.userid,
+          email: user.email,
+          name: user.username
+        },
+        message: 'Registered successfully'
+      });
+    }
+    else{
+      return res.status(401).json({
+        success:false,
+        message:"Not registered, try again"
+      })
+    }
+
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 };
 
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   console.log("from frontend", req.body);
 
   try {
-    // getting user info
     const user = await getUserByEmail(email);
     console.log(user);
 
-    // checking user exits or not
+    // Checking if user exists or not
     if (!user) {
       console.log('User not found');
       return res.status(404).json({ message: 'User not found' });
     }
 
-    //verifying password
-    bcrypt.compare(password, user.password, (err, results) => {
-      if (err) {
-        console.log('Password details', user.password);
-        console.log('Error comparing password:', err);
-        return res.status(500).send('Error comparing password');
-      }
+    // Verifying password
+    const match = await bcrypt.compare(password, user.password);
+    if (match) {
+      console.log('Login Successful');
+      const payload = {
+        email: user.email,
+        id: user.userid,
+        name: user.username
+      };
 
-      // Is verified the allow authentication
-      if (results) {
-        // req.session.userId = user.userid;                        // Store the userId in session
-        console.log('Login Succesful');
-        return res.status(200).json({ message: 'Login successful' });         //return json response with success property
-      }
-      else {
-        // Password not match, authentication failed
-        console.log('Authentication Failed');
-        return res.status(401).send('Authentication Failed');
-      }
-    });
+      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+        expiresIn: "2h"
+      });
+
+      const expiresAt = new Date(Date.now() + 2 * 60 * 60 * 1000);
+      await storeToken(user.userid, token, expiresAt);
+
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true
+      };
+
+      return res.cookie("token", token, options).status(200).json({
+        success: true,
+        token,
+        user: {
+          id: user.userid,
+          email: user.email,
+          name: user.username
+        },
+        message: 'Login successful'
+      });
+    }
+    else {
+      // Password does not match, authentication failed
+      console.log('Authentication Failed');
+      return res.status(401).send('Authentication Failed');
+    }
   } catch (error) {
-    console.error('Error:', err)
+    console.error('Error:', error);
     res.status(500).send('Internal server error');
   }
 }
+

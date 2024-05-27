@@ -92,8 +92,8 @@ function Menu() {
                                 <h3>{item.name}</h3>
                                 <span>₹{item.price}</span>
                                 <button className="add-cart" onClick={() => handleAddToCart(item)}>
-                            Add to cart
-                        </button>
+                                    Add to cart
+                                </button>
                             </div>
                         ))
                     )}

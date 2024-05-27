@@ -37,6 +37,7 @@
         padding-top:40px;
         padding-bottom:70px;
 
+
         .box{
             flex: 1 1 18rem;
             box-shadow: 0 .5rem 1.5rem rgb(0,0,0,.1) ;
@@ -88,6 +89,13 @@
                 color:#999;
                 float:right;
             }
+
+            @media screen and (max-width:900px) {
+            min-width: 400px;
+            }
+            @media screen and (max-width:600px) {
+                min-width: 300px;
+                }
         }
         @media screen and (max-width:900px) {
             flex-wrap: nowrap;

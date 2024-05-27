@@ -3,7 +3,7 @@ import MotionWrap from '../../wrapper/MotionWrap';
 import { Link } from 'react-router-dom'
 import './Mid.scss'
 import { motion } from 'framer-motion'
-import Reservation from '../Reservation/Reservation';
+import Reservation from '../Reservations/ReservationForm/ReservationForm';
 // import { images } from '../../constants'
 
 function Mid() {

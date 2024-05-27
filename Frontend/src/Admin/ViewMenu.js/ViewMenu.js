@@ -4,28 +4,16 @@ import ConfirmationDialog from '../../container/ConfirmationDialog/ConfirmationD
 import FlashMessage from '../../container/FlashMessage/FlashMessage';
 import './ViewMenu.scss';
 import { baseURL } from '../../config/api';
-
+import { fetchData } from '../../FetchData/fetchData';
 const ViewMenus = () => {
   const [menuItems, setMenuItems] = useState([]);
   const [menuId, setMenuId] = useState(null);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [flashMessage, setFlashMessage] = useState(false);
 
-
-  // fetching data from server
-  const getMenus = async () => {
-    try {
-      const response = await axios.get(`${baseURL}/admin/viewMenu`);
-      const jsonData = await response.data;
-      setMenuItems(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
-
   useEffect(() => {
-    getMenus();
-  }, []);
+    fetchData(`${baseURL}/admin/viewMenu`, setMenuItems)
+  })
 
   // handle confirmatioDialog
   const handleDelete = async (menuIDs) => {
@@ -37,7 +25,12 @@ const ViewMenus = () => {
   const handleConfirmDelete = async (isConfirmed) => {
     if (isConfirmed) {
       try {
-        await axios.delete(`${baseURL}/admin/deleteMenu/${menuId}`)
+        const token = localStorage.getItem('token')
+        await axios.delete(`${baseURL}/admin/deleteMenu/${menuId}`,{
+          headers: {
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
+        })
           .then(response => {
             if (response.status === 200) {
               console.log(`Deletion successfully!`);
@@ -68,7 +61,7 @@ const ViewMenus = () => {
     <div className={`view-menus ${showConfirmation ? 'show-confirmation' : ''}`}>
       <h2>View Menus</h2>
       <div className="menu-list">
-        {menuItems.map((item, index) => (
+        {menuItems?.map((item, index) => (
           <div className="menu-item" key={item.menuid}>
             {/* Display the image directly using Base64 encoded data */}
             <img src={item.imageurl} alt={item.name} />

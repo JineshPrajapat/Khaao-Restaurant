@@ -6,9 +6,7 @@ const { insertReview, getReviews } = require("../dbfunction/Review");
 exports.sendReview = async (req, res) => {
     try {
         const { reviewText, rating } = req.body;
-        console.log(req.body);
-
-        const userId = parseInt(5, 10);
+        const userId =  req.user.id;
 
         await insertReview(userId, reviewText, rating);
         res.status(201).json("review added successfully");

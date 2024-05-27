@@ -4,6 +4,7 @@ import ConfirmationDialog from '../../container/ConfirmationDialog/ConfirmationD
 import FlashMessage from '../../container/FlashMessage/FlashMessage';
 import './AddMenuItem.scss';
 import { appURL, baseURL } from '../../config/api';
+import { fetchData } from '../../FetchData/fetchData';
 
 const AddMenuItem = () => {
   const [categories, setCategories] = useState([]);
@@ -15,7 +16,7 @@ const AddMenuItem = () => {
   // fetching categories for selecting option
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/v1/category');
+      const response = await axios.get('http://localhost:5000/api/v1/category');
       const jsonData = response.data;
       setCategories(jsonData);
       setIsLoading(false);
@@ -27,7 +28,6 @@ const AddMenuItem = () => {
   useEffect(() => {
     fetchCategories();
   })
-
 
   // handling form submission using useState
   const [formValue, setformValue] = useState({
@@ -77,7 +77,13 @@ const AddMenuItem = () => {
       formData.append('amount', formValue.amount);
       formData.append('image', formValue.image);
 
-      await axios.post(`${baseURL}/admin/addMenu`, formData)
+      const token = localStorage.getItem('token');
+
+      await axios.post(`${baseURL}/admin/addMenu`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`            // Include token in Authorization header
+        }
+      })
         .then(response => {
           console.log("Response:", response);
 

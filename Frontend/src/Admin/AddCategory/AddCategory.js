@@ -4,6 +4,7 @@ import './AddCategory.scss';
 import FlashMessage from "../../container/FlashMessage/FlashMessage";
 import ConfirmationDialog from "../../container/ConfirmationDialog/ConfirmationDialog";
 import { baseURL } from "../../config/api";
+import { fetchData } from "../../FetchData/fetchData";
 
 //  below line can create upto 28 error of webpack with 4 warning, only single line
 // import { response } from "express";
@@ -21,28 +22,16 @@ const AddCategory = () => {
     categoryImage: null
   });
 
-  // fetching data from server
-  const getCategory = async () => {
-    try {
-      const response = await axios.get(`${baseURL}/category`);
-      const jsonData = await response.data;
-      setCategoryData(jsonData);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
-
   useEffect(() => {
-    getCategory();
-  }, []);
-
+    fetchData(`${baseURL}/category`, setCategoryData)
+  })
 
   const handleChange = (event) => {
     setformValue({
-        ...formValue,
-        [event.target.name]: event.target.value
+      ...formValue,
+      [event.target.name]: event.target.value
     });
-}
+  }
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
@@ -83,7 +72,13 @@ const AddCategory = () => {
         console.log(pair[0] + ': ' + pair[1]);
       }
 
-      await axios.post(`${baseURL}/admin/addcategory`, formData)
+      const token = localStorage.getItem('token');
+
+      await axios.post(`${baseURL}/admin/addcategory`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`            // Include token in Authorization header
+        }
+      })
         .then(response => {
           console.log("Response:", response);
 
@@ -123,7 +118,12 @@ const AddCategory = () => {
     if (isConfirmed) {
       try {
         console.log("categoryid", categoryId);
-        await axios.delete(`http://localhost:3000/api/v1/admin/deleteCategory/${categoryId}`)
+        const token = localStorage.getItem('token');
+        await axios.delete(`${baseURL}/admin/deleteCategory/${categoryId}`,{
+          headers: {
+            Authorization: `Bearer ${token}`            // Include token in Authorization header
+          }
+        })
           .then(response => {
             if (response.status === 200) {
               console.log("Category Deletion succesful.");
