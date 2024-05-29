@@ -31,9 +31,8 @@ function App() {
 
   const fullUrl = window.location.href;
   // const isAdminSignUpUrl = fullUrl === 'http://localhost:3000/admin';
-  const isAdminSignUpUrl = fullUrl === 'https://khaao-restaurant.vercel.app/';    //production
-  const isBaseUrl = fullUrl === 'https://khaao-restaurant.vercel.app/';           //production
-  // const isBaseUrl = fullUrl === 'http://localhost:3000/';
+  const isAdminSignUpUrl = fullUrl === 'https://khaao-restaurant.vercel.app/admin';    //production
+  // const isBaseUrl = fullUrl === 'https://khaao-restaurant.vercel.app/';           //production
 
 
   if (isAdminSignUpUrl) {
