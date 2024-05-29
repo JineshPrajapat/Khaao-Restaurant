@@ -20,8 +20,6 @@ function Login() {
         password: ''
     });
 
-    // console.log('formValue:', formValue);
-
     const handleChange = (event) => {
         setformValue({
             ...formValue,
@@ -44,16 +42,16 @@ function Login() {
                     const token = response.data.token;
                     const userName = response.data.user.name;
                     const email = response.data.user.email;
+                    const expirationTime = new Date().getTime() + 2 * 60 * 60 * 1000;
 
                     localStorage.setItem('token', token);
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('email', email);
+                    localStorage.setItem('expirationTime', expirationTime);
                 
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
                     // window.location.href = `${appURL}`;
-                    // login authenticated to protected area
-                    navigate('/Admin')
-                    // hiding register login from header
+                    navigate('/')
                     setIsLoggedIn(true);
                 }
             })

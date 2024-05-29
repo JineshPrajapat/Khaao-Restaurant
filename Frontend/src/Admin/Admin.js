@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Admin.scss';
+import { checkAndClearExpiredData } from '../utils/storage';
 import images from '../constants/images';
 import { Route, Routes } from 'react-router-dom';
 import NavBar from './NavBar/NavBar';
@@ -23,6 +24,10 @@ const Admin = () => {
   // }
 
   const [navbarToggle, setNavbarToggle] = useState(false);
+
+  useEffect(() => {
+    checkAndClearExpiredData();
+  }, []);
 
   const handleNavbarToggle = () => {
     setNavbarToggle(!navbarToggle);
