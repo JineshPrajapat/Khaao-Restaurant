@@ -30,8 +30,8 @@ function App() {
   }, []);
 
   const fullUrl = window.location.href;
-  // const isAdminSignUpUrl = fullUrl === 'http://localhost:3000/admin';
-  const isAdminSignUpUrl = fullUrl === 'https://khaao-restaurant.vercel.app/admin';    //production
+  const isAdminSignUpUrl = fullUrl === 'http://localhost:3000/admin';
+  // const isAdminSignUpUrl = fullUrl === 'https://khaao-restaurant.vercel.app/admin';    //production
   // const isBaseUrl = fullUrl === 'https://khaao-restaurant.vercel.app/';           //production
 
 
@@ -65,7 +65,7 @@ function App() {
           {isLoggedIn ?
             <>
               <Route path="bookingTable" element={<ReservationForm />} />
-              <Route path="Cart" element={<Cart />} />
+              {/* <Route path="Cart" element={<Cart />} /> */}
             </> :
             <>
               <Route path="Register" element={<Register />} />

@@ -46,7 +46,7 @@ function Header() {
                               {isLoggedIn ? (
                                     /* Render links for logged-in users here */
                                     <li className='float-right'>
-                                          <li><Link to="/Cart"><i className="fa-solid fa-cart-plus" title='Cart'></i><span className="cart-title"> Cart</span></Link></li>
+                                          {/* <li><Link to="/Cart"><i className="fa-solid fa-cart-plus" title='Cart'></i><span className="cart-title"> Cart</span></Link></li> */}
                                           <li><LogOutButton/></li>
                                           {/* Other links specific to logged-in users */}
                                     </li>
