@@ -74,15 +74,15 @@ const Admin = () => {
         </div>
         <div className="admin_main_content">
           <Routes >
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/admin-Dashboard" element={<Dashboard />} />
-            <Route path="/Users" element={<Users />} />
-            <Route path="/view-menus" element={<ViewMenus />} />
-            <Route path="/add-menu-item" element={<AddMenuItem />} />
-            <Route path="/view-orders" element={<ViewOrders />} />
-            <Route path="/view-reservations" element={<ViewReservation />} />
-            <Route path="/register-admin" element={<RegisterAdmin />} />
-            <Route path="/add-category" element={<AddCategory />} />
+            <Route path="admin/" element={<Dashboard />} />
+            <Route path="admin/admin-Dashboard" element={<Dashboard />} />
+            <Route path="admin/Users" element={<Users />} />
+            <Route path="admin/view-menus" element={<ViewMenus />} />
+            <Route path="admin/add-menu-item" element={<AddMenuItem />} />
+            <Route path="admin/view-orders" element={<ViewOrders />} />
+            <Route path="admin/view-reservations" element={<ViewReservation />} />
+            <Route path="admin/register-admin" element={<RegisterAdmin />} />
+            <Route path="admin/add-category" element={<AddCategory />} />
           </Routes>
         </div>
       </div>

@@ -35,7 +35,7 @@ export const Reservations = () => {
     };
 
     return (
-        <div className="container mx-auto py-4 px-2 md:px-4">
+        <div className="container mx-auto py-4 md:py-8 px-2 md:px-4">
             {!showTable ?
                 <Availability
                     setAvailability={setAvailability}

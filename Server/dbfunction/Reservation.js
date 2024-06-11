@@ -6,10 +6,15 @@ const getAllReservations = async () => {
     return rows;
 };
 
-const insertReservation = async (userId, name, eamil, numberOfGuests, phoneNumber, reservationDate, reservationTime, tableNumber,specialRequest) => {
-    const queryText = 'INSERT INTO rest.reservation (userid, name, eamil, partysize, contact_number, date, time, table_id,specialRequest ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
-    const values = [userId, name, eamil, numberOfGuests, phoneNumber, reservationDate, reservationTime, tableNumber,specialRequest];
-    await query(queryText, values);
+const insertReservation = async (userId, name, email, phoneNumber, numberOfGuests, reservationDate, reservationTime, tableNumber, specialRequest,transaction_id) => {
+    const queryText = 'INSERT INTO rest.reservation (userid, name, email, partysize, contact_number, date, time, table_id, specialRequest, transaction_id ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+    const values = [userId, name, email, numberOfGuests, phoneNumber, reservationDate, reservationTime, tableNumber, specialRequest,transaction_id];
+    try {
+        await query(queryText, values);
+    } catch (err) {
+        console.error('Error executing query:', err.stack);
+        throw err; 
+    }
 };
 
 const getAvailableTables = async (number_of_people) => {

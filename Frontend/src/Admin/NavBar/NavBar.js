@@ -6,14 +6,14 @@ import '@fortawesome/fontawesome-free/css/all.css';
 const NavBar = () => {
 
     const Menus = [
-        { name: "DashBoard", icon: "fas fa-tachometer-alt", path: "/" },
-        { name: "Users", icon: "fas fa-users", path: "/Users" },
-        { name: "Menu", icon: "fas fa-utensils", path: "/view-menus" },
+        { name: "DashBoard", icon: "fas fa-tachometer-alt", path: "/admin/" },
+        { name: "Users", icon: "fas fa-users", path: "/admin/Users" },
+        { name: "Menu", icon: "fas fa-utensils", path: "/admin/view-menus" },
         // { name: "Orders", icon: "fas fa-shopping-cart", path: "/view-orders" },
-        { name: "Reservation", icon: "fas fa-calendar-check", path: "/view-reservations" },
-        { name: "Add Menu", icon: "fas fa-plus-square", path: "/add-menu-item" },
-        { name: "Add Category", icon: "fas fa-tags", path: "/add-category" },
-        { name: "Add Admin", icon: "fas fa-user-plus", path: "/register-admin" },
+        { name: "Reservation", icon: "fas fa-calendar-check", path: "/admin/view-reservations" },
+        { name: "Add Menu", icon: "fas fa-plus-square", path: "/admin/add-menu-item" },
+        { name: "Add Category", icon: "fas fa-tags", path: "/admin/add-category" },
+        { name: "Add Admin", icon: "fas fa-user-plus", path: "/admin/register-admin" },
     ]
     const [active, setActive] = useState(0);
 

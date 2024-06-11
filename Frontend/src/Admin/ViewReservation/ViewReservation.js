@@ -76,7 +76,19 @@ const ViewReservation = () => {
 
   useEffect(() => {
     fetchData(`${baseURL}/admin/getReservation`, setReservationData)
-  })
+  });
+
+  const formatDate = (dateString) => {
+    const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+    return new Intl.DateTimeFormat('en-GB', options).format(new Date(dateString));
+  };
+
+  const formatTime  = (time) =>{
+    const timeSlot = time;
+    const convertedtime = new Date(`2000-01-01T${timeSlot}`).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+    return convertedtime;
+  }
+
 
   const handleDeleteReservation = (reservationID) => {
     const updatedReservations = reservationData.filter(
@@ -97,15 +109,15 @@ const ViewReservation = () => {
       <div className='table-container'>
         <table>
           <thead>
-            <tr>
-              <th>Reservation ID</th>
-              <th>User ID</th>
-              <th>Name</th>
-              <th>Date</th>
-              <th>Time</th>
+            <tr className='whitespace-nowrap'>
+              <th>ID</th>
+              <th>Profile</th>
+              <th>Contact</th>
+              <th>Reserved Date</th>
               <th>Party Size</th>
-              <th>Contact Number</th>
-              <th>Actions</th>
+              <th>Transaction ID</th>
+              <th>Special Request</th>
+              {/* <th>Actions</th> */}
             </tr>
           </thead>
           <tbody>
@@ -115,18 +127,41 @@ const ViewReservation = () => {
                 className={getAnimationClassName(index)}
               >
                 <td>{reservation.reservationid}</td>
-                <td>{reservation.userid}</td>
-                <td>{reservation.name}</td>
-                <td>{reservation.date}</td>
-                <td>{reservation.time}</td> 
-                <td>{reservation.partysize}</td>
-                <td>{reservation.contact_number}</td>
-                {/* <td>{reservation.specialRequests}</td> */}
+
                 <td>
+                  <div className="flex items-center gap-2 whitespace-nowrap">
+                    <i class="fa-solid fa-user text-xl rounded-full p-2 text-white bg-black "></i>
+                    <div>{reservation.name}
+                      <br />
+                      <small className="text-gray-500">kh-{reservation.userid}</small>
+                    </div>
+                  </div>
+                </td>
+
+                <td className='whitespace-nowrap'>
+                  <i className="fas fa-envelope pr-2  "></i> <a href={`mailto:${reservation.email}`} className='text-black no-underline hover:underline'>{reservation.email}</a>
+                  <br />
+                  <i className="fas fa-phone pr-2"></i> <a href={`tel:${reservation.contact_number}`} className='no-underline text-gray-500 hover:underline'><small className="text-gray-500 ">{reservation.contact_number}</small></a>
+                </td>
+
+                <td>{formatDate(reservation.date)}
+                  <br />
+                  <small className="text-gray-500">{formatTime(reservation.time)}</small>
+                </td>
+
+                <td>
+                  <div className='m-0' title={`Number of Guests ${reservation.partysize}`}>NG-{reservation.partysize}</div>
+                  {/* <br/> */}
+                  <small className="text-gray-500" title={`Table Number ${reservation.table_id}`}>TN-{reservation.table_id}</small>
+                </td>
+
+                <td>{reservation.transaction_id}</td>
+                <td>{reservation.specialrequest ? reservation.specialrequest : "NA"}</td>
+                {/* <td>
                   <button onClick={() => handleDeleteReservation(reservation.reservationID)}>
                     Delete
                   </button>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

@@ -1,4 +1,4 @@
-exports.paymentTemplate = ( name, seats, date, time, tableNumber) => {
+exports.paymentTemplate = ( name, seats, date, time, tableNumber, transaction_id) => {
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -75,10 +75,13 @@ exports.paymentTemplate = ( name, seats, date, time, tableNumber) => {
                     <span class="highlight">Name:</span> ${name}
                 </p>
                 <p class="paras">
-                    <span class="highlight">Table NUmber:</span> ${tableNumber}
+                    <span class="highlight">Transaction_Id:</span> ${transaction_id}
                 </p>
                 <p class="paras">
-                    <span class="highlight">Capacity:</span> ${seats}
+                    <span class="highlight">Table Number:</span> ${tableNumber}
+                </p>
+                <p class="paras">
+                    <span class="highlight">Number of Guests:</span> ${seats}
                 </p>
                 <p class="paras">
                     <span class="highlight">Date:</span> ${date}
@@ -86,16 +89,14 @@ exports.paymentTemplate = ( name, seats, date, time, tableNumber) => {
                 <p class="paras">
                     <span class="highlight">Time:</span> ${time}
                 </p>
-                
-                // <p class="para">You are now enrolled in the class </p>
             </div>
             <div class="info">
                 For any further assistance or inquiries, please contact us at
-                <a href="mailto:team@beyondscool.com">Our Gmail</a>.
+                <a href="mailto:chinmayjain854@gmail.com">Our Gmail</a>.
             </div>
             <div class="info">
                 You can also visit our website for more information and course updates.
-                <a href="https://khaaorestuarant.com">our Website</a>.
+                <a href="https://khaao-restaurant.vercel.app/">our Website</a>.
             </div>
         </div>
     </body>

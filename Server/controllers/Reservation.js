@@ -19,12 +19,13 @@ const generateTimeSlots = (start, end, interval) => {
 
 exports.sendReservation = async (req, res) => {
   const userId =  req.user.id;
+  console.log("userId", userId);
   try {
-    const {name, email, phone_number, numberOfGuests, reservationDate, reservationTime, tableNumber,specialRequest } = req.body;
+    const {name, email, phone_number, numberOfGuests, reservationDate, reservationTime, tableNumber,specialRequest,transaction_id } = req.body;
     console.log(req.body);
 
-    await insertReservation(userId, name, email, phone_number, numberOfGuests, reservationDate, reservationTime, tableNumber,specialRequest);
-    return res.status(200).json({ message: 'We received your seats reservation request, Happy to see you soon.' });
+    await insertReservation(userId, name, email, phone_number, numberOfGuests, reservationDate, reservationTime, tableNumber,specialRequest,transaction_id);
+    return res.status(200).json({ message: 'We received your seats reservation request, Happy to see you soon.',data : req.body});
   } catch (error) {
     console.error('Error processing reservation form:', error);
     return res.status(500).json({ message: 'An error occurred while processing your request.' });
