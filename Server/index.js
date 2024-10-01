@@ -33,6 +33,7 @@ const allowedOrigins = [
     'http://localhost:3000',
     'http://admin.localhost:3000',
     'https://khaao-restaurant.vercel.app',
+    'https://khaao-restaurant.vercel.app/admin',
     '*'
 ];
 
