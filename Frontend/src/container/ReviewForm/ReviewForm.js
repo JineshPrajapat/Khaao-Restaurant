@@ -17,8 +17,18 @@ const ReviewForm = () => {
   });
 
   const handleSubmit = async () => {
+    const token = localStorage.getItem('token');
     console.log('Review submitted:', { reviewText, rating });
-    axios.post(`${baseURL}/review/addreview`, { reviewText, rating })
+    axios.post(`${baseURL}/review/addreview`,
+      {
+        reviewText,
+        rating
+      }, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      credentials: 'include'
+    })
       .then((response) => {
         // Show success message for 5 seconds
         setShowSuccessMessage(true);
@@ -29,7 +39,7 @@ const ReviewForm = () => {
       .catch((error) => {
         console.error('Error submitting review:', error);
       })
-      .finally(()=>{
+      .finally(() => {
         setReviewText("");
         setRating(0);
       })

@@ -1,43 +1,45 @@
 const { Client } = require('pg');
 require('dotenv').config();
 
-// const client = new Client({
-//   host: process.env.PGHOST,
-//   port: process.env.PGPORT,
-//   user: process.env.PGUSER,
-//   password: process.env.PGPASSWORD,
-//   database: process.env.PGDATABASE,
-//   schema: process.env.PGSCHEMA
-// });
+let { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, PGPORT, ENDPOINT_ID, PGSCHEMA } = process.env;
 
-// for connection using string url
 const client = new Client({
-  connectionString: process.env.POSTGRES_URL, // Use the connection string
-  ssl: {
-    rejectUnauthorized: false // For SSL-based connections
-  }
+    host: PGHOST,
+    port: PGPORT || 5432,
+    database: PGDATABASE,
+    user: PGUSER,
+    password: PGPASSWORD,
+    ssl: {
+        rejectUnauthorized: false,
+    },
+    options: `project=${ENDPOINT_ID}`,
 });
 
-const connectDB = async () => {
-  try {
-    await client.connect();
-    console.log('Connected to the database');
-  } catch (err) {
-    console.error('Error connecting to the database: ', err);
-  }
+
+const connectToDatabase = async () => {
+    try {
+        await client.connect();
+        if (PGSCHEMA) {
+            await client.query(`SET search_path TO ${PGSCHEMA}`);
+            // console.log(`Schema set to ${PGSCHEMA}`);
+        }
+        console.log('Connected to PostgreSQL database');
+    } catch (error) {
+        console.error('Connection error:', error.stack);
+    }
 };
 
 const query = async (text, params) => {
-  try {
-    const res = await client.query(text, params);
-    return res;
-  } catch (err) {
-    console.error('Error executing query: ', err);
-    throw err;
-  }
+    try {
+        const res = await client.query(text, params);
+        return res;
+    } catch (err) {
+        console.error('Error executing query: ', err);
+        throw err;
+    }
 };
 
 module.exports = {
-  connectDB,
-  query
+    connectToDatabase,
+    query,
 };

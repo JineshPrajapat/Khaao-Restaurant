@@ -17,12 +17,12 @@ const paymentRoutes = require("./routes/Payement");
 
 const adminRoutes = require("./routes/Admin/Admin");
 
-const {connectDB} = require("./conifg/database");
+const {connectToDatabase} = require("./conifg/database");
 const { cloudinaryConnect } = require("./conifg/cloudinary");
 const fileUpload = require("express-fileupload");
 
 cloudinaryConnect();
-connectDB();
+connectToDatabase();
 
 const PORT = process.env.PORT
 
