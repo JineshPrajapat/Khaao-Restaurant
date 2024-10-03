@@ -3,7 +3,7 @@ import axios from 'axios';
 import ConfirmationDialog from '../../container/ConfirmationDialog/ConfirmationDialog';
 import FlashMessage from '../../container/FlashMessage/FlashMessage';
 import './AddMenuItem.scss';
-import { appURL, baseURL } from '../../config/api';
+import { appURL, baseURL } from "../../config/api";
 import { fetchData } from '../../FetchData/fetchData';
 
 const AddMenuItem = () => {
@@ -16,7 +16,7 @@ const AddMenuItem = () => {
   // fetching categories for selecting option
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/v1/category');
+      const response = await axios.get(`${baseURL}/category`);
       const jsonData = response.data;
       setCategories(jsonData);
       setIsLoading(false);

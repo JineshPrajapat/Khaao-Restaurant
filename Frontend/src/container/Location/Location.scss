@@ -16,7 +16,7 @@
         text-transform: uppercase;
 
         @media screen and (max-width: 900px) {
-            font-size: 12px;
+            font-size: 1.2rem;
             letter-spacing: .2em;
             line-height: 1.2em;
         }
@@ -59,10 +59,12 @@
                 transform: scaleX(1);
             }
         }
+    }
 
-        @media screen and (max-width: 900px) {
-            font-size: 8px;
-            margin-bottom: 2px;
-        }
+    @media screen and (max-width:768px) {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        align-items: center;
     }
 }

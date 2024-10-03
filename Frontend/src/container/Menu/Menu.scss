@@ -1,8 +1,6 @@
 .menu{
     // max-width: 100%;
-    // margin: 40px 10px auto;
     padding: 30px;
-    padding-top: 120px;
     padding-bottom: 120px;
     background-image: url('../../assets/food/pexels5.jpeg');
     background-attachment: fixed;
@@ -33,41 +31,41 @@
             column-gap: 30px;
             margin-bottom: 20px;
         }
-        h4{
-            font-weight: bold;
-            padding:8px 20px;
-            white-space: nowrap;
-            border-bottom: 2px solid white;
-            border-top: 2px solid white;
-            text-transform: uppercase;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.4s;
+        // h4{
+        //     font-weight: bold;
+        //     padding:8px 20px;
+        //     white-space: nowrap;
+        //     border-bottom: 2px solid white;
+        //     border-top: 2px solid white;
+        //     text-transform: uppercase;
+        //     color: white;
+        //     text-decoration: none;
+        //     cursor: pointer;
+        //     transition: background-color 0.4s;
 
-            &:hover{
-                background-color: #550c3e;
-                color: wheat;
-            }
+        //     &:hover{
+        //         background-color: #550c3e;
+        //         color: wheat;
+        //     }
 
-            &::after {
-                content: "";
-                display: block;
-                width: 0;
-                height: 100%;
-                background-color: #550c3e;
-                transition: width 0.3s; 
-            }
+        //     &::after {
+        //         content: "";
+        //         display: block;
+        //         width: 0;
+        //         height: 100%;
+        //         background-color: #550c3e;
+        //         transition: width 0.3s; 
+        //     }
     
-            &:hover::after {
-                width: 100%;
-            }
+        //     &:hover::after {
+        //         width: 100%;
+        //     }
 
-            &:active {
-                background-color: #550c3e;
-                color: wheat; 
-            }
-        }
+        //     &:active {
+        //         background-color: #550c3e;
+        //         color: wheat; 
+        //     }
+        // }
         ::-webkit-scrollbar {
             height: 0px;
         } 
@@ -80,12 +78,12 @@
         align-items: center;
         gap:20px;
         border:2px solid #550c3e;
-        min-width: 60vh;
+        // min-width: 60vw;
         padding: 50px;
 
         .menu-item__profile{
-            height:250px;
-            width: 160px;
+            // height:250px;
+            // width: 160px;
             // background:rgba(221, 166, 166, 0.4);
             background: rgb(215, 202, 177,0.5);
             // background: rgba(0,0,0,0.6);
@@ -97,16 +95,26 @@
             justify-content: center;
             align-items: center; 
             transition: 0.5s ease-in;
+
             img{
-                height:100px;
-                width: 100px;
+                height:130px;
+                width: 130px;
                 border-radius: 50%;
                 object-fit: cover;
                 border:5px solid white;
                 transition: 0.5s ease-in-out;
+                margin: 1rem;
+
+                @media screen  and (max-width:768px){
+                    border:3px solid white;
+                    height:100px;
+                    width: 100px;
+                    margin: 9px;
+                }
             }
             h3{
                 font-size: 18px;
+                white-space: wrap;
                 text-transform: uppercase;
                 color: #550c3e;
                 font-weight: 800;
@@ -140,20 +148,19 @@
             &:hover{
             // background:rgba(249, 147, 147, 0.449);
             background: wheat;
-            transform: scale(1.1);
+            // transform: scale(1.1);
                 img{
                     transform: rotate(360deg);
                 }
             }
         }
-        @media screen  and (max-width:900px){
-            min-width:30vh;
-            padding: 20px;
+        @media screen  and (max-width:768px){
+            // min-width:30vh;
+            padding: 10px;
         }
     }
     @media screen  and (max-width:900px){
         padding: 10px;
-        padding-top: 65px;
         padding-bottom: 50px;
     }
 

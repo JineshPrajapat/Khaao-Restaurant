@@ -126,14 +126,14 @@ const ViewReservation = () => {
                 key={reservation.reservationID}
                 className={getAnimationClassName(index)}
               >
-                <td>{reservation.reservationid}</td>
+                <td>{reservation.reservationid ?reservation.reservationid : index+1 }</td>
 
                 <td>
                   <div className="flex items-center gap-2 whitespace-nowrap">
                     <i class="fa-solid fa-user text-xl rounded-full p-2 text-white bg-black "></i>
                     <div>{reservation.name}
                       <br />
-                      <small className="text-gray-500">kh-{reservation.userid}</small>
+                      {/* <small className="text-gray-500">kh-{reservation.userid}</small> */}
                     </div>
                   </div>
                 </td>

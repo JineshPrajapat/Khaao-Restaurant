@@ -42,13 +42,12 @@ const Users = () => {
                                         <i class="fa-solid fa-user text-xl rounded-full p-2 text-white bg-black"></i>
                                         <div>{user.username}
                                             <br />
-                                            <small className="text-gray-500">kh-{user.userid}</small>
+                                            <small className="text-gray-500 whitespace-nowrap">kh-{user.userid}</small>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <i className="fas fa-envelope pr-2 "></i> {user.email}
-                                    <br />
+                                    <div className=" whitespace-nowrap"><i className="fas fa-envelope pr-2 "></i>{user.email}</div>
                                     <i className="fas fa-phone pr-2"></i> <small className="text-gray-500">{user.contact_number}</small>
                                 </td>
                                 <td>

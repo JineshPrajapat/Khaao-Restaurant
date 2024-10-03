@@ -4,13 +4,13 @@ import './Menu.scss';
 import { baseURL } from "../../config/api";
 
 function Menu() {
-
     const [menuData, setMenuData] = useState({
         menulist: [],
         loading: true,
     })
     // const [menulist, setMenuList] = useState([]);
     const [categoryList, setcategoryList] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("Breakfast");
 
     // fetching category from server
     const getCategory = async () => {
@@ -45,6 +45,7 @@ function Menu() {
 
     // handling on Categoryclick
     const onCategoryClick = async (selectedVariety) => {
+        setSelectedCategory(selectedVariety);
         console.log("Selected Variety:", selectedVariety);
         try {
             const response = await fetch(`${baseURL}/menu/${selectedVariety}`);
@@ -77,9 +78,26 @@ function Menu() {
                 <h2>MENU</h2>
                 <div className="category-container">
                     <div className="category-name">
-                        {categoryList?.map((item, index) => (
-                            <h4 key={item?.category_id + index} onClick={() => onCategoryClick(item?.variety)} >{item?.variety}</h4>
-                        ))}
+                        {categoryList?.map((item, index) => {
+                            return (
+                                // <h4
+                                //     key={item?.category_id + index}
+                                //     onClick={() => onCategoryClick(item?.variety)}
+                                // >
+                                //     {item?.variety}
+                                // </h4>
+
+                                <h4
+                                    key={item?.category_id + index}
+                                    onClick={() => onCategoryClick(item?.variety)}
+                                    className={`font-bold py-2 px-3 whitespace-nowrap border-t-2 border-b-2 border-white uppercase text-white cursor-pointer transition-colors duration-400 hover:bg-[#550c3e] hover:text-wheat active:bg-[#550c3e] active:text-wheat relative ${selectedCategory === item?.variety ? "bg-[#550c3e] text-wheat" : ""}`}
+                                >
+                                    {item?.variety}
+                                    {/* <span className="absolute left-0 top-0 h-full w-0 bg-[#550c3e] transition-all duration-300 group-hover:w-full"></span> */}
+                                </h4>
+
+                            )
+                        })}
                     </div>
                 </div>
 
@@ -95,6 +113,26 @@ function Menu() {
                                     Add to cart
                                 </button>
                             </div>
+                            
+                            // <div
+                            //     className="flex flex-col w-36 h-full rounded-t-full items-center p-1 bg-[wheat] shadow-lg rounded-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1"
+                            //     key={item.menuid + index}
+                            // >
+                            //     <img
+                            //         src={item.imageurl}
+                            //         alt={item.title}
+                            //         className="w-full h-28 rounded-full object-cover  mb-4 transition-transform duration-500 ease-in-out transform hover:scale-105"
+                            //     />
+                            //     <h3 className="text-lg font-semibold text-gray-800 mb-2">{item.name}</h3>
+                            //     <span className="text-xl text-gray-600 mb-4">₹{item.price}</span>
+                            //     <button
+                            //         className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 active:bg-green-700 transition-colors duration-300 ease-in-out transform hover:scale-105 active:scale-95"
+                            //         onClick={() => handleAddToCart(item)}
+                            //     >
+                            //         Add to cart
+                            //     </button>
+                            // </div>
+
                         ))
                     )}
                 </div>

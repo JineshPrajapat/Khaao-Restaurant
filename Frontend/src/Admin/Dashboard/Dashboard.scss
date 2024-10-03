@@ -94,11 +94,11 @@
         }
 
         @media screen and (max-width:1000px) {
-          width:160px;
+          // width:160px;
         }
 
         @media screen and (max-width:500px) {
-          width:150px;
+          // width:150px;
         }
       }
     }
@@ -110,11 +110,26 @@
       h2 {
         font-size: 2rem;
         margin-bottom: 1rem;
+
       }
   
       p {
         font-size: 1.2rem;
       }
+
+      @media screen and (max-width:768px) {
+        h2{
+          font-size: 1rem;
+        }
+
+        p{
+          font-size: 0.8rem;
+        }
+      }
+    }
+
+    @media screen and (max-width:768px) {
+      padding: 1rem;
     }
   }
   

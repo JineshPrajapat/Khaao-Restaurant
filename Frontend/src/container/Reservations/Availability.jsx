@@ -93,7 +93,7 @@ const Availability = ({ setAvailability, setSelectedDate, setSelectedGuest, setS
                             </button>
                             <span
                                 onClick={() => setShowDatePicker(true)}
-                                className={`cursor-pointer px-3 py-2 transition duration-200 w-44 text-center whitespace-nowrap`}
+                                className={`cursor-pointer text-xl md:text-2xl px-3 py-2 transition duration-200 w-44 text-center whitespace-nowrap`}
                             >
                                 {formatDate(formValue.date)}
                             </span>
@@ -116,7 +116,7 @@ const Availability = ({ setAvailability, setSelectedDate, setSelectedGuest, setS
                             />
                         )}
                     </div>
-                    <label className="block text-xl text-gray-700 mb-2">Date</label>
+                    <label className="block text-base md:text-xl text-gray-700 mb-2">Date</label>
                 </div>
                 <div className="mb-6 flex flex-col items-center justify-between border-b-2 border-gray-200">
                     <div className="flex flex-col items-center space-y-2">
@@ -151,7 +151,7 @@ const Availability = ({ setAvailability, setSelectedDate, setSelectedGuest, setS
                                             setFormValue({ ...formValue, number_of_people: num });
                                             setShowGuestOptions(false);
                                         }}
-                                        className="cursor-pointer px-3 py-2 w-[50vw] text-center text-xl hover:bg-[#340926] hover:text-white transition duration-200"
+                                        className="cursor-pointer px-3 py-2 w-[50vw] text-center text-xl md:text-2xl hover:bg-[#340926] hover:text-white transition duration-200"
                                     >
                                         {num}
                                     </div>
@@ -159,13 +159,13 @@ const Availability = ({ setAvailability, setSelectedDate, setSelectedGuest, setS
                             </div>
                         )}
                     </div>
-                    <label className="block text-xl text-gray-700 mb-2">Guests</label>
+                    <label className="block text-base md:text-xl text-gray-700 mb-2">Guests</label>
                 </div>
                 <div className=' px-6'>
                     <button
                         type="submit"
                         disabled={processing}
-                        className={`w-full text-white text-xl px-4 py-2 rounded transition duration-300 shadow ${processing ? "bg-blue-400": "bg-blue-500 hover:bg-blue-700 " }`}
+                        className={`w-full text-white text-sm sm:text-xl px-4 py-2 rounded transition duration-300 shadow ${processing ? "bg-blue-400": "bg-blue-500 hover:bg-blue-700 " }`}
                     >
                         {processing ? <PreLoader/> :"Check Availability/Search"}
                     </button>

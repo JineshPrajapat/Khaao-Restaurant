@@ -27,9 +27,8 @@ function Header() {
                   {/* <!-- heading ----main boox of heading-----heading --> */}
                   <header className="header-content">
                         <div className="header-content__heading">
-                              {/* <div className="col-lg-8"> */}
-                              <div className="header-content__heading__logo">
-                                    <img src={images.logo} alt="logo" id="logoimg" />
+                              <div className="header-content__heading__logo items-center">
+                                    <img className='logo_icon' src={images.logo} alt="logo" id="logoimg" />
                                     <a href="/">Khaao - Delicious Food Restaurant</a>
                                     <a href="javascript:void(0);" className='icon' onClick={navbarToggle} ><i className='fa fa-bars' /></a>
                               </div>
@@ -47,7 +46,7 @@ function Header() {
                                     /* Render links for logged-in users here */
                                     <li className='float-right'>
                                           {/* <li><Link to="/Cart"><i className="fa-solid fa-cart-plus" title='Cart'></i><span className="cart-title"> Cart</span></Link></li> */}
-                                          <li><LogOutButton/></li>
+                                          <li><LogOutButton /></li>
                                           {/* Other links specific to logged-in users */}
                                     </li>
                               ) : (

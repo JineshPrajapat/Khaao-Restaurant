@@ -3,7 +3,6 @@ import { images } from '../../constants';
 import { Link } from 'react-router-dom';
 import './Categories.scss';
 import { baseURL } from '../../config/api';
-import { fetchData } from "../../FetchData/fetchData";
 // const categoryImages = [
 //     {
 //         imgUrl: images.idli,

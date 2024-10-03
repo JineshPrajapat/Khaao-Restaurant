@@ -1,7 +1,7 @@
 const { query } = require("../conifg/database")
 
 const getAllCategories = async () => {
-    const queryText = 'SELECT * FROM rest.category';
+    const queryText = 'SELECT * FROM rest.category ORDER BY category_id ASC';
     const { rows } = await query(queryText);
     return rows;
 };

@@ -10,7 +10,7 @@ import PreLoader from "../PreLoader/PreLoader";
 
 function Login() {
 
-    const {setIsLoggedIn} = useAuth();
+    const { setIsLoggedIn } = useAuth();
     const navigate = useNavigate();                                //initialize useNavigate
     const [flashMessage, setFlashMessage] = useState(null);
     const [processing, setProcessing] = useState(false);
@@ -48,7 +48,7 @@ function Login() {
                     localStorage.setItem('userName', userName);
                     localStorage.setItem('email', email);
                     localStorage.setItem('expirationTime', expirationTime);
-                
+
                     setFlashMessage({ type: 'success', message: 'Login successful.' });
                     // window.location.href = `${appURL}`;
                     navigate('/')
@@ -61,8 +61,8 @@ function Login() {
                         // Handle user not found
                         console.error('User not found');
                         setFlashMessage({ type: 'error', message: 'User not found' });
-                        // window.location.href = 'http://localhost:3001/Login';
-
+                        window.location.href = `${appURL}/Register`;
+                        
                     } else if (error.response.status === 401) {
                         // Handle authentication failure
                         console.error('Authentication failed');
@@ -78,7 +78,7 @@ function Login() {
                     console.error('Network or request error:', error);
                 }
             })
-            .finally(()=>{
+            .finally(() => {
                 setProcessing(false);
             })
     }
@@ -127,7 +127,7 @@ function Login() {
                     />
                 </div>
                 <a className="forget_password" href="#">Forgot password?</a>
-                <button title='Sign In' type='submit' disabled={processing} className={`sign-in_btn ${processing ? "processing" : ""}`}><span>{processing ? <PreLoader/> : "Log In"}</span></button>
+                <button title='Sign In' type='submit' disabled={processing} className={`sign-in_btn ${processing ? "processing" : ""}`}><span>{processing ? <PreLoader /> : "Log In"}</span></button>
                 <div className="new_to_account">
                     <h4 >New to Khaao?<Link to="/register">Create Account</Link></h4>
                 </div>

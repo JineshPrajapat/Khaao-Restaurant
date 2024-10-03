@@ -1,9 +1,9 @@
 .header-content{
-    position: fixed;
+    position: sticky;
     top: 0;
     right:0;
     left:0;
-    z-index: 10;
+    z-index: 100;
     width: 100%;
     background: #550c3e;
     text-align: center;
@@ -14,16 +14,18 @@
         background-color: black;
         align-items: center;
         text-align: center;
-        height: 25%;
+        padding: 3px;
+        // height: 25%;
 
         &__logo{
             text-align: left;
             display: flex;
-            flex-direction: row;
+            // flex-direction: row;
             align-items: center;
-            img{
-                width:60px;
+            .logo_icon{
+                // width:60px;
                 height:60px;
+                margin-bottom: 0;
                 @media screen  and (max-width:900px){
                     width:35px;
                     height:35px;

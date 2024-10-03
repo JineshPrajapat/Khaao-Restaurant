@@ -1,6 +1,6 @@
 .reservations {
-  max-width: 1000px;
-    margin:50px auto 50px;
+  // max-width: 1000px;
+  margin:30px 10px 30px;
   
     h2 {
       text-align: center;
@@ -11,6 +11,11 @@
   
 
     .table-container{
+
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: wrap; 
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -73,7 +78,7 @@
         }
         
       }
-      @media screen and (max-width:900px) {
+      @media screen and (max-width:1024px) {
         overflow-y: auto;
         display: flex;
         flex-wrap: wrap; 

@@ -193,7 +193,7 @@ const AddCategory = () => {
           <table>
             <thead>
               <tr>
-                <th>Category ID</th>
+                <th>Sr. no</th>
                 <th>Category</th>
                 <th>Image</th>
                 <th>Delete</th>
@@ -206,7 +206,7 @@ const AddCategory = () => {
                 >
                   <td>{category?.category_id}</td>
                   <td>{category?.variety}</td>
-                  <td><img src={category?.imageurl} alt={category?.variety} /></td>
+                  <td className="flex items-center justify-center"><img src={category?.imageurl} alt={category?.variety} /></td>
                   <td>
                     <button onClick={() => handleDeleteCategory(category?.category_id)}>Delete</button>
                   </td>
